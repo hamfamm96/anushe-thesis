@@ -5,7 +5,7 @@
   --font-serif: var(--font-serif);
 }
 
-* {
+*, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -13,6 +13,8 @@
 
 html {
   scroll-behavior: smooth;
+  /* Offset for fixed nav so headings aren't hidden under it on anchor-click */
+  scroll-padding-top: 72px;
 }
 
 body {
@@ -20,8 +22,7 @@ body {
   color: #F5EDD8;
   font-family: var(--font-sans), sans-serif;
   font-weight: 300;
-  line-height: 1.7;
-  overflow-x: hidden;
+  line-height: 1.75;
 }
 
 .font-serif {

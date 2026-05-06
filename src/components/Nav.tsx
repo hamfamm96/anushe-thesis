@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { siteConfig } from "@/config/site";
 
 const links = [
@@ -11,23 +10,9 @@ const links = [
 ];
 
 export default function Nav() {
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 60);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled
-          ? "bg-[#0E0904]/95 backdrop-blur-md border-b border-[#C99420]/10"
-          : "bg-gradient-to-b from-[#0E0904]/80 to-transparent"
-      }`}
-    >
-      <div className="max-w-[1400px] mx-auto px-6 md:px-16 py-5 flex justify-between items-center">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-[#0E0904]/90 backdrop-blur-md border-b border-[#C99420]/12">
+      <div className="px-8 md:px-16 lg:px-24 py-5 flex justify-between items-center">
         <a
           href="#"
           className="font-serif text-[18px] tracking-[0.22em] text-[#F5EDD8] hover:text-[#C99420] transition-colors"
@@ -35,13 +20,13 @@ export default function Nav() {
           {siteConfig.title}
         </a>
 
-        {/* Desktop links */}
+        {/* Desktop */}
         <ul className="hidden md:flex gap-8 list-none">
           {links.map((l) => (
             <li key={l.href}>
               <a
                 href={l.href}
-                className="text-[#8C7456] hover:text-[#F5EDD8] text-[11px] tracking-[0.18em] uppercase transition-colors"
+                className="text-[#F5EDD8]/65 hover:text-[#F5EDD8] text-[11px] tracking-[0.18em] uppercase transition-colors"
               >
                 {l.label}
               </a>
@@ -49,13 +34,13 @@ export default function Nav() {
           ))}
         </ul>
 
-        {/* Mobile: just show nothing extra - hamburger not needed for single-page */}
+        {/* Mobile: horizontal links — works up to ~380px */}
         <div className="md:hidden flex gap-5">
           {links.map((l) => (
             <a
               key={l.href}
               href={l.href}
-              className="text-[#8C7456] hover:text-[#F5EDD8] text-[10px] tracking-[0.14em] uppercase transition-colors"
+              className="text-[#F5EDD8]/60 hover:text-[#F5EDD8] text-[9px] tracking-[0.12em] uppercase transition-colors"
             >
               {l.label}
             </a>
