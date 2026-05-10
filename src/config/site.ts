@@ -1,12 +1,12 @@
 // ─────────────────────────────────────────────────────────────────────────────
-// SITE CONFIGURATION
-// Change anything here without touching component files.
+// SITE CONFIGURATION — change content here without touching components
 // ─────────────────────────────────────────────────────────────────────────────
 
 export const siteConfig = {
   // ── Identity ────────────────────────────────────────────────────────────────
   title: "Woven",
-  eyebrow: "Thesis · Design & Visual Communication · 2026",
+  // Set to "" to hide the eyebrow line in the hero
+  eyebrow: "BDes Thesis · Visual Communication · 2026",
   subtitle:
     "A 3D character animation exploring cultural identity, heritage, and unity across Pakistan's four regions",
 
@@ -27,9 +27,9 @@ export const siteConfig = {
   concept: {
     pullQuote: ["Four friends. Four cultures.", "One story."],
     body: [
-      "This project is a 3D character animation that highlights the cultural diversity of Pakistan through traditional clothing and music. It features four characters inspired by close friends, each representing a different ethnicity: Kashmiri, Pashtoon, Sindhi, and Punjabi. Every character is designed with culturally authentic attire and musical elements that reflect their identity and heritage.",
-      "The animation begins by introducing each character individually, allowing their distinct cultures to be understood on their own. As the story progresses, the characters gradually come together in a shared space, symbolizing unity, connection, and mutual respect. This transition from individuality to togetherness forms the core message of the project.",
-      "Rooted in personal experience and real friendships across different cultural backgrounds, the project reflects how diversity can exist alongside strong emotional bonds. It presents Pakistan as a country made up of varied identities that come together to form a shared sense of belonging and unity.",
+      "This 3D character animation explores cultural diversity in Pakistan through traditional clothing and music. It brings together four characters inspired by close friends, each representing a different ethnicity: Kashmiri, Pashtoon, Sindhi, and Punjabi. Every character is carefully designed with culturally rooted outfits and musical elements that reflect their identity and heritage.",
+      "The concept unfolds by first introducing each character individually, allowing their unique cultural backgrounds to stand out and be understood on their own. As the animation progresses, these distinct identities gradually come together in a shared space, symbolising unity, connection, and harmony within diversity.",
+      "Rooted in personal experience and real friendships across different cultures, this project reflects how differences can coexist with strong human bonds. It presents a visual narrative of Pakistan as a diverse yet united nation, where individuality contributes to a larger sense of togetherness.",
     ],
   },
 
@@ -39,7 +39,7 @@ export const siteConfig = {
       name: "Hamza",
       region: "Kashmir",
       ethnicity: "Kashmiri",
-      outfit: "Pheran - traditional Kashmiri wool robe",
+      outfit: "Pheran · traditional Kashmiri wool robe",
       instrument: "Santoor",
       image: "/images/hamza.png",
     },
@@ -80,9 +80,14 @@ export const siteConfig = {
     },
     creator: {
       name: "Anushe Hammad",
-      bio: [
-        "Anushe is a design and visual communication student based in Islamabad, Pakistan. Her practice spans branding, editorial design, AR illustration, and documentary film - united by a focus on visual storytelling rooted in real human experience.",
-        "She has worked with Channel 7 Communications, Tabadlab, Mobilink Microfinance Bank, and the Public Private Partnership Authority.",
+      degree: "Bachelor of Design in Visual Communication",
+      institution: "University for Creative Arts, Islamabad",
+      bio: "Anushe is a design and visual communication student based in Islamabad, Pakistan. Her practice spans branding, editorial design, AR illustration, and documentary film - united by a focus on visual storytelling rooted in real human experience.",
+      experience: [
+        "Channel 7 Communications",
+        "Tabadlab",
+        "Mobilink Microfinance Bank",
+        "Public Private Partnership Authority",
       ],
       email: "anushehammad5@gmail.com",
       linkedin: "https://www.linkedin.com/in/anushe-hammad-b112722bb/",

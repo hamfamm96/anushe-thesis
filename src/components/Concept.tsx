@@ -5,48 +5,89 @@ import { siteConfig } from "@/config/site";
 
 export default function Concept() {
   const [line1, line2] = siteConfig.concept.pullQuote;
+  const [para1, para2, para3] = siteConfig.concept.body;
 
   return (
     <section
       id="concept"
-      className="bg-[#17100A] py-36 border-t border-[#C99420]/12"
+      className="section section-divider bg-[#100D09]"
     >
-      {/* Pull-quote: centred, narrow column */}
-      <motion.div
-        initial={{ opacity: 0, y: 28 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.2 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        className="px-8 md:px-16 lg:px-24 text-center mb-16"
-      >
-        <p className="text-[#C99420] text-[10px] tracking-[0.4em] uppercase mb-6">
-          The Concept
-        </p>
-        <p className="font-serif italic text-[clamp(30px,4.5vw,52px)] font-normal leading-[1.22] text-[#F5EDD8]">
-          &ldquo;{line1}
-          <br />
-          <span className="text-[#C99420] not-italic">{line2}&rdquo;</span>
-        </p>
-      </motion.div>
+      <div className="site-container">
+        {/* Asymmetric editorial header — eyebrow & pull-quote anchored left */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 mb-20 md:mb-28"
+        >
+          <div className="lg:col-span-3">
+            <p className="eyebrow mb-4">The Concept</p>
+            <div className="hidden lg:block w-10 h-px bg-[#C99420]/50" />
+          </div>
 
-      {/* Divider */}
-      <div className="w-12 h-px bg-[#C99420]/20 mx-auto mb-16" />
+          <div className="lg:col-span-9">
+            <p
+              className="font-serif italic font-normal text-[#F5EDD8] leading-[1.18]"
+              style={{ fontSize: "var(--fs-h2)" }}
+            >
+              &ldquo;{line1}
+              <br />
+              <span className="text-[#C99420] not-italic">{line2}&rdquo;</span>
+            </p>
+          </div>
+        </motion.div>
 
-      {/* Body copy: left-aligned in a readable column, centred on page */}
-      <div className="px-8 md:px-16 lg:px-24 xl:px-32">
-        <div className="max-w-[780px] mx-auto space-y-7">
-          {siteConfig.concept.body.map((para, i) => (
+        {/* Two-column body on desktop */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.65, ease: "easeOut" }}
+            className="lg:col-span-3 lg:col-start-1"
+          >
+            <p className="font-serif text-[14px] tracking-[0.32em] uppercase text-[#C99420]/55">
+              Pakistan
+              <br />
+              <span className="text-[#F5EDD8]/40">Four regions</span>
+            </p>
+          </motion.div>
+
+          <div className="lg:col-span-9 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
             <motion.p
-              key={i}
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.6, delay: i * 0.1, ease: "easeOut" }}
-              className="text-[17px] text-[#F5EDD8]/72 leading-[1.9]"
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.65, delay: 0.08, ease: "easeOut" }}
+              className="text-[#C8BEAA] drop-cap md:col-span-2"
+              style={{ fontSize: "var(--fs-body)", lineHeight: 1.9 }}
             >
-              {para}
+              {para1}
             </motion.p>
-          ))}
+
+            <motion.p
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.65, delay: 0.16, ease: "easeOut" }}
+              className="text-[#C8BEAA]"
+              style={{ fontSize: "var(--fs-body)", lineHeight: 1.9 }}
+            >
+              {para2}
+            </motion.p>
+
+            <motion.p
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.65, delay: 0.24, ease: "easeOut" }}
+              className="text-[#C8BEAA]"
+              style={{ fontSize: "var(--fs-body)", lineHeight: 1.9 }}
+            >
+              {para3}
+            </motion.p>
+          </div>
         </div>
       </div>
     </section>

@@ -39,3 +39,12 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# editor & ai tool local state
+.idea/
+.vscode/
+.claude/
+.superpowers/
+
+# stray uploads outside /public
+/images/

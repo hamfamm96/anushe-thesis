@@ -3,19 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Woven — Design Mockup</title>
+  <title>Woven — Design Mockup v2</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
-      --bg:         #0E0904;
-      --surface:    #17100A;
-      --terracotta: #C4521E;
-      --gold:       #C99420;
-      --cream:      #F5EDD8;
-      --muted:      #8C7456;
-      --border:     rgba(201, 148, 32, 0.18);
+      --bg:      #0E0904;
+      --surface: #17100A;
+      --gold:    #C99420;
+      --cream:   #F5EDD8;
+      --dim:     rgba(245, 237, 216, 0.72);   /* body text — up from 0.55 */
+      --dimmer:  rgba(245, 237, 216, 0.50);   /* secondary labels */
+      --border:  rgba(201, 148, 32, 0.16);
     }
 
     html { scroll-behavior: smooth; }
@@ -25,51 +25,56 @@
       color: var(--cream);
       font-family: 'DM Sans', sans-serif;
       font-weight: 300;
-      line-height: 1.7;
+      line-height: 1.8;
       overflow-x: hidden;
     }
 
-    /* ── NAV ─────────────────────────────────────── */
+    /* ── NAV ─────────────────────────────────────────── */
     nav {
       position: fixed;
       top: 0; left: 0; right: 0;
       z-index: 100;
-      padding: 26px 64px;
+      padding: 22px 64px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: linear-gradient(to bottom, rgba(14, 9, 4, 0.92), transparent);
+      /* solid bg from the start so links are ALWAYS readable */
+      background: rgba(14, 9, 4, 0.88);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
     }
 
     .nav-logo {
       font-family: 'Playfair Display', serif;
-      font-size: 20px;
-      letter-spacing: 0.22em;
+      font-size: 19px;
+      letter-spacing: 0.24em;
       color: var(--cream);
       text-decoration: none;
     }
 
     .nav-links {
       display: flex;
-      gap: 40px;
+      gap: 36px;
       list-style: none;
     }
 
+    /* ↑ was #8C7456 — now cream/70 so links are actually visible */
     .nav-links a {
-      color: var(--muted);
+      color: rgba(245, 237, 216, 0.68);
       text-decoration: none;
-      font-size: 11px;
-      letter-spacing: 0.16em;
+      font-size: 12px;
+      letter-spacing: 0.15em;
       text-transform: uppercase;
       transition: color 0.2s;
     }
 
     .nav-links a:hover { color: var(--cream); }
 
-    /* ── HERO ─────────────────────────────────────── */
+    /* ── HERO ─────────────────────────────────────────── */
     .hero {
       position: relative;
       height: 100vh;
+      min-height: 600px;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -79,109 +84,116 @@
     }
 
     .hero-bg {
-      position: absolute;
-      inset: 0;
+      position: absolute; inset: 0;
       background-image: url('images/WhatsApp Image 2026-05-06 at 4.22.13 AM.jpeg');
       background-size: cover;
       background-position: center 30%;
-      filter: brightness(0.5) saturate(1.1);
-      transform: scale(1.03);
+      filter: brightness(0.46) saturate(1.1);
+      transform: scale(1.04);
     }
 
     .hero-overlay {
-      position: absolute;
-      inset: 0;
+      position: absolute; inset: 0;
       background: linear-gradient(
         to bottom,
-        rgba(14, 9, 4, 0.15) 0%,
-        rgba(14, 9, 4, 0.05) 35%,
-        rgba(14, 9, 4, 0.75) 100%
+        rgba(14, 9, 4, 0.08) 0%,
+        rgba(14, 9, 4, 0.0) 30%,
+        rgba(14, 9, 4, 0.80) 100%
       );
     }
 
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      padding: 0 24px;
-    }
+    .hero-content { position: relative; z-index: 2; padding: 0 24px; }
 
-    .hero-eyebrow {
+    .eyebrow {
       font-size: 10px;
-      letter-spacing: 0.35em;
+      letter-spacing: 0.38em;
       text-transform: uppercase;
       color: var(--gold);
-      margin-bottom: 28px;
-      opacity: 0.9;
+      margin-bottom: 26px;
     }
 
     .hero-title {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(96px, 16vw, 180px);
+      font-size: clamp(88px, 15vw, 168px);
       font-weight: 400;
       line-height: 0.88;
       letter-spacing: -0.01em;
       color: var(--cream);
-      margin-bottom: 36px;
+      margin-bottom: 32px;
     }
 
-    .hero-subtitle {
-      font-size: 15px;
+    .hero-sub {
+      font-size: 16px;
       font-weight: 300;
       font-style: italic;
       letter-spacing: 0.04em;
-      color: rgba(245, 237, 216, 0.65);
-      max-width: 520px;
-      margin: 0 auto 52px;
-      line-height: 1.7;
+      /* ↑ up from /60 */
+      color: rgba(245, 237, 216, 0.72);
+      max-width: 500px;
+      margin: 0 auto 48px;
+      line-height: 1.75;
     }
 
     .hero-scroll {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 10px;
+      display: flex; flex-direction: column; align-items: center; gap: 10px;
     }
-
     .hero-scroll span {
-      font-size: 9px;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--muted);
+      font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase;
+      color: rgba(245, 237, 216, 0.45);
     }
-
-    .hero-scroll-line {
-      width: 1px;
-      height: 56px;
+    .scroll-line {
+      width: 1px; height: 52px;
       background: linear-gradient(to bottom, var(--gold), transparent);
     }
 
-    /* ── FILM ─────────────────────────────────────── */
-    .film-section {
-      background: #070402;
-      padding: 100px 64px;
+    /* ── SHARED SECTION SHELL ─────────────────────────── */
+    /* Every section gets generous top padding and a gold hairline */
+    .section {
+      padding: 112px 64px;
+      border-top: 1px solid var(--border);
     }
 
+    .section--surface { background: var(--surface); }
+    .section--bg      { background: var(--bg); }
+
+    /* Section eyebrow + heading shared styles */
+    .s-eyebrow {
+      font-size: 10px;
+      letter-spacing: 0.38em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 18px;
+    }
+
+    .s-heading {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(36px, 5vw, 64px);
+      font-weight: 400;
+      line-height: 1.06;
+      color: var(--cream);
+    }
+
+    /* Body copy — ↑ 17px and /72 contrast everywhere */
+    .body-text {
+      font-size: 17px;
+      color: var(--dim);
+      line-height: 1.85;
+    }
+
+    /* ── FILM ─────────────────────────────────────────── */
     .film-inner {
       max-width: 1040px;
       margin: 0 auto;
     }
 
-    .film-label {
-      font-size: 10px;
-      letter-spacing: 0.35em;
-      text-transform: uppercase;
-      color: var(--gold);
-      text-align: center;
-      margin-bottom: 10px;
-    }
-
     .film-title {
       font-family: 'Playfair Display', serif;
-      font-size: 40px;
+      font-size: clamp(28px, 3.5vw, 42px);
       font-weight: 400;
       color: var(--cream);
       text-align: center;
       margin-bottom: 48px;
+      margin-top: 10px;
     }
 
     .film-video-wrap {
@@ -193,241 +205,172 @@
       background: #000;
     }
 
-    .film-video-wrap video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
+    .film-video-wrap video { width: 100%; height: 100%; object-fit: cover; display: block; }
 
-    /* ── CONCEPT ──────────────────────────────────── */
-    .concept-section {
-      background: var(--surface);
-      padding: 140px 64px;
+    /* ── CONCEPT ──────────────────────────────────────── */
+    .concept-inner {
+      max-width: 720px;
+      margin: 0 auto;
       text-align: center;
-    }
-
-    .eyebrow {
-      font-size: 10px;
-      letter-spacing: 0.35em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 24px;
     }
 
     .pull-quote {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(30px, 4.5vw, 52px);
+      font-size: clamp(28px, 4.5vw, 50px);
       font-style: italic;
       font-weight: 400;
-      line-height: 1.25;
+      line-height: 1.22;
       color: var(--cream);
-      max-width: 780px;
-      margin: 0 auto 56px;
+      margin-bottom: 56px;
     }
 
-    .pull-quote em {
-      color: var(--gold);
-      font-style: normal;
-    }
+    .pull-quote .gold { color: var(--gold); font-style: normal; }
 
     .concept-divider {
-      width: 48px;
-      height: 1px;
+      width: 44px; height: 1px;
       background: var(--border);
-      margin: 0 auto 40px;
+      margin: 0 auto 48px;
     }
 
-    .concept-body {
-      font-size: 15px;
-      color: rgba(245, 237, 216, 0.55);
-      line-height: 1.9;
-      max-width: 680px;
-      margin: 0 auto;
+    /* ↑ 3 paragraphs stacked with generous gap so it doesn't feel dense */
+    .concept-paras {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      text-align: left;
     }
 
-    /* ── CHARACTERS ───────────────────────────────── */
-    .characters-section {
-      background: var(--bg);
-      padding: 140px 64px;
-    }
-
-    .characters-header {
-      margin-bottom: 72px;
-    }
-
-    .section-title {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(40px, 5.5vw, 72px);
-      font-weight: 400;
-      line-height: 1.05;
-      color: var(--cream);
-      margin-top: 12px;
-    }
-
-    .characters-grid {
+    /* ── CHARACTERS ───────────────────────────────────── */
+    .char-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 3px;
+      gap: 4px;
+      margin-top: 64px;
     }
 
     .char-card {
       position: relative;
       overflow: hidden;
-      aspect-ratio: 2/3;
+      /* ↑ was 2/3; taller cards = more dramatic, more room for outfit details */
+      aspect-ratio: 3/5;
+      cursor: default;
     }
 
     .char-card img {
-      width: 100%;
-      height: 100%;
+      width: 100%; height: 100%;
       object-fit: cover;
       object-position: top;
-      filter: brightness(0.65) saturate(1.05);
-      transition: transform 0.7s cubic-bezier(0.25,0.46,0.45,0.94),
-                  filter 0.4s ease;
+      filter: brightness(0.62) saturate(1.05);
+      transition: transform 0.7s cubic-bezier(0.25,0.46,0.45,0.94), filter 0.4s ease;
       display: block;
     }
 
     .char-card:hover img {
       transform: scale(1.04);
-      filter: brightness(0.85) saturate(1.15);
+      filter: brightness(0.82) saturate(1.15);
     }
 
-    .char-gradient {
-      position: absolute;
-      inset: 0;
+    .char-grad {
+      position: absolute; inset: 0;
       background: linear-gradient(
         to top,
-        rgba(14, 9, 4, 0.96) 0%,
-        rgba(14, 9, 4, 0.3) 45%,
-        transparent 70%
+        rgba(14, 9, 4, 0.97) 0%,
+        rgba(14, 9, 4, 0.25) 48%,
+        transparent 68%
       );
     }
 
+    /* ↑ more generous padding inside cards */
     .char-info {
       position: absolute;
       bottom: 0; left: 0; right: 0;
-      padding: 0 28px 32px;
+      padding: 0 28px 36px;
     }
 
-    .char-region {
-      font-size: 9px;
-      letter-spacing: 0.32em;
+    .char-pill {
+      display: inline-block;
+      margin-bottom: 14px;
+      padding: 5px 14px;
+      border: 1px solid rgba(201, 148, 32, 0.38);
+      border-radius: 20px;
+      font-size: 10px;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: 10px;
+      color: rgba(201, 148, 32, 0.88);
     }
 
     .char-name {
       font-family: 'Playfair Display', serif;
-      font-size: 32px;
+      font-size: 30px;
       font-weight: 400;
       color: var(--cream);
       line-height: 1;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
     }
 
+    /* ↑ /60 up from /50 */
     .char-outfit {
-      font-size: 12px;
-      color: rgba(245, 237, 216, 0.5);
-      margin-bottom: 14px;
-      line-height: 1.5;
+      font-size: 13px;
+      color: rgba(245, 237, 216, 0.60);
+      line-height: 1.55;
+      margin-bottom: 6px;
     }
 
     .char-instrument {
-      display: inline-block;
-      padding: 5px 13px;
-      border: 1px solid rgba(201, 148, 32, 0.35);
-      border-radius: 20px;
-      font-size: 10px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: rgba(201, 148, 32, 0.85);
+      font-size: 12px;
+      color: rgba(201, 148, 32, 0.72);
+      letter-spacing: 0.06em;
     }
 
-    /* ── PROCESS ──────────────────────────────────── */
-    .process-section {
-      background: var(--surface);
-      padding: 140px 64px;
-    }
-
-    .process-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      margin-top: 64px;
-    }
-
-    .process-grid img {
-      width: 100%;
-      aspect-ratio: 4/3;
-      object-fit: cover;
-      display: block;
-      filter: brightness(0.8) saturate(0.95);
-      transition: filter 0.35s ease;
-    }
-
-    .process-grid img:hover { filter: brightness(1) saturate(1.05); }
-
-    .process-grid .span2 {
-      grid-column: span 2;
-      aspect-ratio: 16/9;
-    }
-
-    /* ── ABOUT ────────────────────────────────────── */
-    .about-section {
-      background: var(--bg);
-      padding: 140px 64px;
-      border-top: 1px solid var(--border);
-    }
-
+    /* ── ABOUT ────────────────────────────────────────── */
     .about-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 96px;
-      max-width: 1100px;
+      /* ↑ wider gap so the two columns don't feel jammed together */
+      gap: 100px;
+      max-width: 1080px;
     }
 
-    .about-block h3 {
+    .about-block-heading {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(28px, 3vw, 40px);
+      font-size: clamp(24px, 2.8vw, 36px);
       font-weight: 400;
       color: var(--cream);
+      line-height: 1.18;
       margin-top: 12px;
       margin-bottom: 28px;
-      line-height: 1.15;
     }
 
-    .about-block p {
-      font-size: 14px;
-      color: rgba(245, 237, 216, 0.55);
+    /* ↑ 15px up from 14px and /72 up from /55 */
+    .about-para {
+      font-size: 15px;
+      color: var(--dim);
       line-height: 1.9;
       margin-bottom: 16px;
     }
 
-    .contact-btn {
+    .btn {
       display: inline-flex;
       align-items: center;
-      gap: 12px;
-      margin-top: 36px;
-      padding: 14px 28px;
+      gap: 10px;
+      padding: 13px 26px;
       border: 1px solid rgba(201, 148, 32, 0.45);
       color: var(--gold);
       text-decoration: none;
-      font-size: 12px;
-      letter-spacing: 0.14em;
+      font-size: 11px;
+      letter-spacing: 0.15em;
       text-transform: uppercase;
       transition: background 0.2s, border-color 0.2s;
+      margin-top: 8px;
     }
 
-    .contact-btn:hover {
-      background: rgba(201, 148, 32, 0.08);
-      border-color: var(--gold);
-    }
+    .btn:hover { background: rgba(201, 148, 32, 0.09); border-color: var(--gold); }
 
-    /* ── FOOTER ───────────────────────────────────── */
+    .btn-row { display: flex; flex-direction: column; gap: 10px; margin-top: 32px; }
+
+    /* ── FOOTER ───────────────────────────────────────── */
     footer {
-      padding: 36px 64px;
+      padding: 32px 64px;
       border-top: 1px solid var(--border);
       display: flex;
       justify-content: space-between;
@@ -437,32 +380,47 @@
     .footer-logo {
       font-family: 'Playfair Display', serif;
       font-size: 16px;
-      letter-spacing: 0.2em;
-      color: var(--muted);
+      letter-spacing: 0.22em;
+      color: var(--dimmer);
     }
 
-    footer p {
-      font-size: 11px;
-      color: var(--muted);
-      letter-spacing: 0.05em;
+    footer p { font-size: 11px; color: var(--dimmer); letter-spacing: 0.05em; }
+
+    /* ── MOCKUP BADGE ─────────────────────────────────── */
+    .badge {
+      position: fixed; bottom: 20px; right: 20px;
+      background: #C4521E; color: #fff;
+      padding: 7px 15px; border-radius: 20px;
+      font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+      z-index: 999; font-family: 'DM Sans', sans-serif; font-weight: 500;
     }
 
-    /* ── MOCKUP BADGE ─────────────────────────────── */
-    .mockup-badge {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: var(--terracotta);
-      color: #fff;
-      padding: 7px 16px;
-      border-radius: 20px;
-      font-size: 10px;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
+    /* ── CHANGE LOG overlay ───────────────────────────── */
+    .changes {
+      position: fixed; bottom: 20px; left: 20px;
+      background: rgba(14, 9, 4, 0.92);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(10px);
+      padding: 18px 22px;
+      border-radius: 6px;
+      max-width: 280px;
       z-index: 999;
-      font-family: 'DM Sans', sans-serif;
-      font-weight: 500;
+      font-size: 12px;
+      color: var(--dim);
+      line-height: 1.6;
     }
+
+    .changes strong {
+      display: block;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+
+    .changes ul { padding-left: 14px; }
+    .changes li { margin-bottom: 5px; }
   </style>
 </head>
 <body>
@@ -483,23 +441,23 @@
     <div class="hero-bg"></div>
     <div class="hero-overlay"></div>
     <div class="hero-content">
-      <p class="hero-eyebrow">Thesis · Design &amp; Visual Communication · 2026</p>
+      <p class="eyebrow">Thesis &middot; Design &amp; Visual Communication &middot; 2026</p>
       <h1 class="hero-title">Woven</h1>
-      <p class="hero-subtitle">
+      <p class="hero-sub">
         A 3D character animation exploring cultural identity,<br>
         heritage, and unity across Pakistan's four regions
       </p>
       <div class="hero-scroll">
-        <div class="hero-scroll-line"></div>
+        <div class="scroll-line"></div>
         <span>Scroll</span>
       </div>
     </div>
   </section>
 
   <!-- FILM -->
-  <section class="film-section" id="film">
+  <section class="section section--bg" id="film" style="padding-top: 96px; padding-bottom: 96px;">
     <div class="film-inner">
-      <p class="film-label">The Animation</p>
+      <p class="eyebrow" style="text-align:center;">The Animation</p>
       <h2 class="film-title">Watch the film</h2>
       <div class="film-video-wrap">
         <video controls poster="images/WhatsApp Image 2026-05-06 at 4.22.13 AM.jpeg">
@@ -510,74 +468,76 @@
   </section>
 
   <!-- CONCEPT -->
-  <section class="concept-section" id="concept">
-    <p class="eyebrow">The Concept</p>
-    <p class="pull-quote">
-      "Four friends. Four cultures.<br><em>One story.</em>"
-    </p>
-    <div class="concept-divider"></div>
-    <p class="concept-body">
-      This project is a 3D character animation that highlights the cultural diversity of Pakistan through traditional clothing and music. It features four characters inspired by close friends, each representing a different ethnicity: Kashmiri, Pashtoon, Sindhi, and Punjabi. Every character is designed with culturally authentic attire and musical elements that reflect their identity and heritage.
-      <br><br>
-      The animation begins by introducing each character individually, allowing their distinct cultures to be understood on their own. As the story progresses, the characters gradually come together in a shared space, symbolizing unity, connection, and mutual respect. This transition from individuality to togetherness forms the core message of the project.
-      <br><br>
-      Rooted in personal experience and real friendships across different cultural backgrounds, the project reflects how diversity can exist alongside strong emotional bonds. It presents Pakistan as a country made up of varied identities that come together to form a shared sense of belonging and unity.
-    </p>
+  <section class="section section--surface" id="concept">
+    <div class="concept-inner">
+      <p class="eyebrow">The Concept</p>
+      <p class="pull-quote">
+        &ldquo;Four friends. Four cultures.<br>
+        <span class="gold">One story.&rdquo;</span>
+      </p>
+      <div class="concept-divider"></div>
+      <div class="concept-paras">
+        <p class="body-text">
+          This project is a 3D character animation that highlights the cultural diversity of Pakistan through traditional clothing and music. It features four characters inspired by close friends, each representing a different ethnicity: Kashmiri, Pashtoon, Sindhi, and Punjabi. Every character is designed with culturally authentic attire and musical elements that reflect their identity and heritage.
+        </p>
+        <p class="body-text">
+          The animation begins by introducing each character individually, allowing their distinct cultures to be understood on their own. As the story progresses, the characters gradually come together in a shared space, symbolizing unity, connection, and mutual respect. This transition from individuality to togetherness forms the core message of the project.
+        </p>
+        <p class="body-text">
+          Rooted in personal experience and real friendships across different cultural backgrounds, the project reflects how diversity can exist alongside strong emotional bonds. It presents Pakistan as a country made up of varied identities that come together to form a shared sense of belonging and unity.
+        </p>
+      </div>
+    </div>
   </section>
 
   <!-- CHARACTERS -->
-  <section class="characters-section" id="characters">
-    <div class="characters-header">
-      <p class="eyebrow">The Characters</p>
-      <h2 class="section-title">Four identities.<br>One ensemble.</h2>
-    </div>
-    <div class="characters-grid">
+  <section class="section section--bg" id="characters">
+    <p class="eyebrow">The Characters</p>
+    <h2 class="s-heading">Four identities.<br>One ensemble.</h2>
 
-      <!-- Hamza — Kashmir -->
+    <div class="char-grid">
+
       <div class="char-card">
-        <img src="images/Screenshot 2026-05-06 at 4.17.18 AM.png" alt="Hamza">
-        <div class="char-gradient"></div>
+        <img src="images/Screenshot 2026-05-06 at 4.17.18 AM.png" alt="Hamza - Kashmir">
+        <div class="char-grad"></div>
         <div class="char-info">
-          <p class="char-region">Kashmir</p>
+          <span class="char-pill">Kashmiri</span>
           <h3 class="char-name">Hamza</h3>
-          <p class="char-outfit">Pheran - traditional Kashmiri wool robe · Santoor</p>
-          <span class="char-instrument">Kashmiri</span>
+          <p class="char-outfit">Pheran - traditional Kashmiri wool robe</p>
+          <p class="char-instrument">Santoor</p>
         </div>
       </div>
 
-      <!-- Vaina — Pashtoon -->
       <div class="char-card">
-        <img src="images/Screenshot 2026-05-06 at 4.17.29 AM.png" alt="Vaina">
-        <div class="char-gradient"></div>
+        <img src="images/Screenshot 2026-05-06 at 4.17.29 AM.png" alt="Vaina - Pashtoon">
+        <div class="char-grad"></div>
         <div class="char-info">
-          <p class="char-region">Pashtoon</p>
+          <span class="char-pill">Pashtoon</span>
           <h3 class="char-name">Vaina</h3>
-          <p class="char-outfit">Pathani Frock · Partug · Parhuney · Rabab</p>
-          <span class="char-instrument">Pashtoon</span>
+          <p class="char-outfit">Pathani Frock · Partug · Parhuney</p>
+          <p class="char-instrument">Rabab</p>
         </div>
       </div>
 
-      <!-- Aimen — Sindhi -->
       <div class="char-card">
-        <img src="images/Screenshot 2026-05-06 at 4.16.49 AM.png" alt="Aimen">
-        <div class="char-gradient"></div>
+        <img src="images/Screenshot 2026-05-06 at 4.16.49 AM.png" alt="Aimen - Sindhi">
+        <div class="char-grad"></div>
         <div class="char-info">
-          <p class="char-region">Sindhi</p>
+          <span class="char-pill">Sindhi</span>
           <h3 class="char-name">Aimen</h3>
-          <p class="char-outfit">Cholo · Ghaghri · Ajrak patterns · Bansuri</p>
-          <span class="char-instrument">Sindhi</span>
+          <p class="char-outfit">Cholo · Ghaghri · Ajrak patterns</p>
+          <p class="char-instrument">Bansuri</p>
         </div>
       </div>
 
-      <!-- Omar — Punjabi -->
       <div class="char-card">
-        <img src="images/Screenshot 2026-05-06 at 4.17.02 AM.png" alt="Omar">
-        <div class="char-gradient"></div>
+        <img src="images/Screenshot 2026-05-06 at 4.17.02 AM.png" alt="Omar - Punjabi">
+        <div class="char-grad"></div>
         <div class="char-info">
-          <p class="char-region">Punjabi</p>
+          <span class="char-pill">Punjabi</span>
           <h3 class="char-name">Omar</h3>
-          <p class="char-outfit">Shalwar Kameez · Pagri · Dhol</p>
-          <span class="char-instrument">Punjabi</span>
+          <p class="char-outfit">Shalwar Kameez · Pagri</p>
+          <p class="char-instrument">Dhol</p>
         </div>
       </div>
 
@@ -585,47 +545,70 @@
   </section>
 
   <!-- ABOUT -->
-  <section class="about-section" id="about">
+  <section class="section section--surface" id="about">
     <div class="about-grid">
-      <div class="about-block">
+
+      <div>
         <p class="eyebrow">The Project</p>
-        <h3>A thesis on identity through visual storytelling</h3>
-        <p>
+        <h3 class="about-block-heading">A thesis on identity through visual storytelling</h3>
+        <p class="about-para">
           Created as a final thesis for the Bachelor of Design in Visual Communication at The Millennial Universal College / University for Creative Arts, Islamabad (2023-2026).
         </p>
-        <p>
+        <p class="about-para">
           The research grounds itself in Stuart Hall's Cultural Representation Theory and the concept of Unity in Diversity - arguing that animation, when built on authentic cultural research, can communicate identity with more precision and empathy than words alone.
         </p>
-        <!-- TODO: Replace href with actual thesis PDF path once uploaded -->
-        <a class="contact-btn" href="#" download>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          Download Thesis
-        </a>
+        <div style="margin-top: 32px;">
+          <a class="btn" href="#" download>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Download Thesis
+          </a>
+        </div>
       </div>
-      <div class="about-block">
+
+      <div>
         <p class="eyebrow">The Creator</p>
-        <h3>Anushe Hammad</h3>
-        <p>
+        <h3 class="about-block-heading">Anushe Hammad</h3>
+        <p class="about-para">
           Anushe is a design and visual communication student based in Islamabad, Pakistan. Her practice spans branding, editorial design, AR illustration, and documentary film - united by a focus on visual storytelling rooted in real human experience.
         </p>
-        <p>
+        <p class="about-para">
           She has worked with Channel 7 Communications, Tabadlab, Mobilink Microfinance Bank, and the Public Private Partnership Authority.
         </p>
-        <a class="contact-btn" href="mailto:anushehammad5@gmail.com">
-          anushehammad5@gmail.com
-        </a>
+        <div class="btn-row">
+          <a class="btn" href="mailto:anushehammad5@gmail.com">anushehammad5@gmail.com</a>
+          <a class="btn" href="https://www.linkedin.com/in/anushe-hammad-b112722bb/" target="_blank">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            LinkedIn
+          </a>
+        </div>
       </div>
+
     </div>
   </section>
 
   <!-- FOOTER -->
   <footer>
     <span class="footer-logo">WOVEN</span>
-    <p>© 2026 Anushe Hammad</p>
-    <p>Design &amp; Visual Communication · University for Creative Arts, Islamabad</p>
+    <p>&copy; 2026 Anushe Hammad</p>
+    <p>Design &amp; Visual Communication &middot; University for Creative Arts, Islamabad</p>
   </footer>
 
-  <div class="mockup-badge">Design Mockup</div>
+  <!-- BADGES -->
+  <div class="badge">Mockup v2</div>
+
+  <div class="changes">
+    <strong>What changed (v1 → v2)</strong>
+    <ul>
+      <li>Nav links: muted brown → cream/68 (visible)</li>
+      <li>Nav: always-opaque + blur, gold hairline bottom</li>
+      <li>Body text: 14-15px/55% → 17px/72%</li>
+      <li>Section padding: py-28 → py-28 + gold border-top between every section</li>
+      <li>Concept: 3 paragraphs with gap-24 air between them</li>
+      <li>Character cards: aspect 2/3 → 3/5 (taller, more dramatic)</li>
+      <li>Card info: more internal padding + bigger gap</li>
+      <li>About text: 14px/55% → 15px/72%</li>
+    </ul>
+  </div>
 
 </body>
 </html>
